@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "GCP 课件播放助手",
+  "version": "1.1.2",
+  "description": "在指定的 GCP 课程页依次播放课件，按第一项填写并提交课程评估。",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": [
+    "https://www.nmpaied.com/*",
+    "https://cdn.nmpaied.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": [
+      "https://www.nmpaied.com/pc/*",
+      "https://cdn.nmpaied.com/scorm_player/zj_play.html*"
+    ],
+    "js": ["routes.js", "assessment.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}
